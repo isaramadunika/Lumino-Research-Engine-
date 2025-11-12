@@ -3,6 +3,7 @@
 
 import Link from 'next/link';
 import { useEffect } from 'react';
+import ASCIIBackground from './ascii-background';
 
 export default function HeroAscii() {
   useEffect(() => {
@@ -88,6 +89,9 @@ export default function HeroAscii() {
 
   return (
     <main className="relative min-h-screen overflow-hidden bg-black">
+      {/* ASCII Background Animation */}
+      <ASCIIBackground />
+
       {/* Vitruvian man animation - hidden on mobile */}
       <div className="absolute inset-0 w-full h-full hidden lg:block">
         <div 
