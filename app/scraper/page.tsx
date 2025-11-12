@@ -208,14 +208,13 @@ export default function ResearchScraperPage() {
   }, [query, selectedSources, resultsPerSource, saveSearchToHistory]);
 
   const downloadCSV = useCallback(() => {
-    const headers = ['Title', 'Authors', 'Abstract', 'Source', 'Link', 'Citations', 'Published Date'];
+    const headers = ['Title', 'Authors', 'Abstract', 'Source', 'Link', 'Published Date'];
     const rows = papers.map((p) => [
       p.title,
       p.authors,
       p.abstract,
       p.source,
       p.link,
-      p.citations,
       p.publishedDate || 'N/A',
     ]);
     const csv = [headers, ...rows].map((row) => row.map((cell) => `"${String(cell).replace(/"/g, '""')}"`).join(',')).join('\n');
@@ -230,15 +229,6 @@ export default function ResearchScraperPage() {
     link.click();
     document.body.removeChild(link);
   }, [papers]);
-
-  const totalCitations = useMemo(
-    () =>
-      papers.reduce((sum, p) => {
-        const match = p.citations.match(/\d+/);
-        return sum + (match ? parseInt(match[0]) : 0);
-      }, 0),
-    [papers]
-  );
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white">
@@ -487,7 +477,6 @@ export default function ResearchScraperPage() {
                   {[
                     { label: 'Total Papers', value: papers.length, color: 'from-blue-400 to-blue-600' },
                     { label: 'Sources', value: sourceStats.length, color: 'from-purple-400 to-purple-600' },
-                    { label: 'Total Citations', value: totalCitations.toLocaleString(), color: 'from-green-400 to-green-600' },
                   ].map((stat, idx) => (
                     <div
                       key={idx}
@@ -570,9 +559,6 @@ export default function ResearchScraperPage() {
                             <div className="flex flex-wrap gap-2 mt-3">
                               <span className="px-3 py-1 bg-blue-500/20 text-blue-300 text-xs rounded-full border border-blue-400/30">
                                 {paper.source}
-                              </span>
-                              <span className="px-3 py-1 bg-purple-500/20 text-purple-300 text-xs rounded-full border border-purple-400/30">
-                                📊 {paper.citations}
                               </span>
                               {paper.publishedDate && (
                                 <span className="px-3 py-1 bg-gray-500/20 text-gray-300 text-xs rounded-full border border-gray-400/30">
