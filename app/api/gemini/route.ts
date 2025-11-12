@@ -8,7 +8,7 @@ export async function POST(request: Request) {
   const { action, userQuery, paperTitle, paperAbstract, papers } = body;
 
   const GEMINI_API_KEY = process.env.NEXT_PUBLIC_GEMINI_API_KEY;
-  const GEMINI_API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent';
+  const GEMINI_API_URL = 'https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent';
 
   if (!GEMINI_API_KEY) {
     return new Response(

@@ -128,7 +128,7 @@ export default function HeroAscii() {
         <div className="container mx-auto px-6 lg:px-16 lg:ml-[10%]">
           <div className="max-w-lg relative">
             {/* Top decorative line */}
-            <div className="flex items-center gap-2 mb-3 opacity-60">
+            <div className="flex items-center gap-2 mb-3 opacity-60 animate-fadeIn delay-200">
               <div className="w-8 h-px bg-white"></div>
               <span className="text-white text-[10px] font-mono tracking-wider">001</span>
               <div className="flex-1 h-px bg-white"></div>
@@ -137,7 +137,7 @@ export default function HeroAscii() {
             {/* Title with dithered accent */}
             <div className="relative">
               <div className="hidden lg:block absolute -left-3 top-0 bottom-0 w-1 dither-pattern opacity-40"></div>
-              <h1 className="text-2xl lg:text-5xl font-bold text-white mb-3 lg:mb-4 leading-tight font-mono tracking-wider" style={{ letterSpacing: '0.1em' }}>
+              <h1 className="text-2xl lg:text-5xl font-bold text-white mb-3 lg:mb-4 leading-tight font-mono tracking-wider animate-slideInUp" style={{ letterSpacing: '0.1em' }}>
                 DEEP
                 <span className="block text-white mt-1 lg:mt-2 opacity-90">
                   DISCOVERY
@@ -146,7 +146,7 @@ export default function HeroAscii() {
             </div>
 
             {/* Decorative dots pattern - desktop only */}
-            <div className="hidden lg:flex gap-1 mb-3 opacity-40">
+            <div className="hidden lg:flex gap-1 mb-3 opacity-40 animate-fadeIn delay-400">
               {Array.from({ length: 40 }).map((_, i) => (
                 <div key={i} className="w-0.5 h-0.5 bg-white rounded-full"></div>
               ))}
@@ -154,7 +154,7 @@ export default function HeroAscii() {
 
             {/* Description with subtle grid pattern */}
             <div className="relative">
-              <p className="text-xs lg:text-base text-gray-300 mb-5 lg:mb-6 leading-relaxed font-mono opacity-80">
+              <p className="text-xs lg:text-base text-gray-300 mb-5 lg:mb-6 leading-relaxed font-mono opacity-80 animate-fadeIn delay-600">
                 Bringing light to knowledge — Empowering students with every paper.
               </p>
               
@@ -238,6 +238,56 @@ export default function HeroAscii() {
           background-size: 200% 200%, 180% 180%, 250% 250%, 220% 220%, 190% 190%, 240% 240%, 210% 210%, 230% 230%;
           background-position: 0% 0%, 40% 40%, 60% 60%, 20% 20%, 80% 80%, 30% 30%, 70% 70%, 50% 50%;
           opacity: 0.3;
+          animation: starShift 20s ease-in-out infinite;
+        }
+
+        @keyframes starShift {
+          0%, 100% {
+            opacity: 0.2;
+          }
+          50% {
+            opacity: 0.4;
+          }
+        }
+
+        .animate-fadeIn {
+          animation: fadeIn 1s ease-in-out forwards;
+        }
+
+        .animate-slideInUp {
+          animation: slideInUp 0.8s ease-out forwards;
+        }
+
+        .delay-200 {
+          animation-delay: 0.2s;
+        }
+
+        .delay-400 {
+          animation-delay: 0.4s;
+        }
+
+        .delay-600 {
+          animation-delay: 0.6s;
+        }
+
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+          }
+          to {
+            opacity: 1;
+          }
+        }
+
+        @keyframes slideInUp {
+          from {
+            transform: translateY(20px);
+            opacity: 0;
+          }
+          to {
+            transform: translateY(0);
+            opacity: 1;
+          }
         }
       `}</style>
     </main>
