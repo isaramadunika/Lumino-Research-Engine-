@@ -88,17 +88,31 @@ export async function searchArxiv(
   if (cached) return cached.slice(0, maxResults);
 
   try {
-    const encodedQuery = encodeURIComponent(query);
-    const url = `https://export.arxiv.org/api/query?search_query=all:${encodedQuery}&start=0&max_results=${maxResults}&sortBy=relevance&sortOrder=descending`;
+    // Use our server-side proxy to avoid CORS issues
+    const url = `/api/arxiv?query=${encodeURIComponent(query)}&maxResults=${maxResults}`;
     
     const response = await fetch(url, { signal: AbortSignal.timeout(10000) });
-    if (!response.ok) throw new Error('arXiv API error');
+    if (!response.ok) throw new Error(`arXiv API error: ${response.status}`);
     
     const text = await response.text();
+    
+    if (!text || text.trim().length === 0) {
+      console.error('Empty response from arXiv proxy');
+      return [];
+    }
+
     const parser = new DOMParser();
     const xmlDoc = parser.parseFromString(text, 'text/xml');
     
+    // Check for XML parsing errors
+    if (xmlDoc.getElementsByTagName('parsererror').length > 0) {
+      console.error('XML parsing error from arXiv response');
+      return [];
+    }
+    
     const entries = xmlDoc.getElementsByTagName('entry');
+    console.log(`Found ${entries.length} entries from arXiv`);
+    
     const results: ResearchPaper[] = [];
     
     for (let i = 0; i < Math.min(entries.length, maxResults); i++) {
@@ -108,6 +122,7 @@ export async function searchArxiv(
       const authorElements = entry.getElementsByTagName('author');
       const authors = Array.from(authorElements)
         .map((a) => a.getElementsByTagName('name')[0]?.textContent)
+        .filter(Boolean)
         .join(', ');
       
       const id = entry.getElementsByTagName('id')[0]?.textContent || '';
@@ -128,6 +143,7 @@ export async function searchArxiv(
       });
     }
     
+    console.log(`Returning ${results.length} papers from arXiv`);
     saveToCache(query, 'arXiv', results);
     return results;
   } catch (error) {
