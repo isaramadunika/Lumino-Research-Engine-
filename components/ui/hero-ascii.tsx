@@ -198,9 +198,11 @@ export default function HeroAscii() {
             <span className="hidden lg:inline">SYSTEM.ACTIVE</span>
             <span className="lg:hidden">SYS.ACT</span>
             <div className="hidden lg:flex gap-1">
-              {Array.from({ length: 8 }).map((_, i) => (
-                <div key={i} className="w-1 h-3 bg-white/30" style={{ height: `${Math.random() * 12 + 4}px` }}></div>
-              ))}
+              {Array.from({ length: 8 }).map((_, i) => {
+                // Use deterministic heights based on index instead of Math.random()
+                const heights = [6, 10, 8, 12, 7, 11, 9, 5];
+                return <div key={i} className="w-1 h-3 bg-white/30 bar-height" data-bar={i}></div>;
+              })}
             </div>
             <span>V1.0.0</span>
           </div>
@@ -208,9 +210,9 @@ export default function HeroAscii() {
           <div className="flex items-center gap-2 lg:gap-4 text-[8px] lg:text-[9px] font-mono text-white/50">
             <span className="hidden lg:inline">◐ RENDERING</span>
             <div className="flex gap-1">
-              <div className="w-1 h-1 bg-white/60 rounded-full animate-pulse"></div>
-              <div className="w-1 h-1 bg-white/40 rounded-full animate-pulse" style={{ animationDelay: '0.2s' }}></div>
-              <div className="w-1 h-1 bg-white/20 rounded-full animate-pulse" style={{ animationDelay: '0.4s' }}></div>
+              <div className="w-1 h-1 bg-white/60 rounded-full pulse-delay-0"></div>
+              <div className="w-1 h-1 bg-white/40 rounded-full pulse-delay-1"></div>
+              <div className="w-1 h-1 bg-white/20 rounded-full pulse-delay-2"></div>
             </div>
             <span className="hidden lg:inline">FRAME: ∞</span>
           </div>
@@ -270,6 +272,47 @@ export default function HeroAscii() {
           animation-delay: 0.6s;
         }
 
+        /* Bar heights for visualizer */
+        .bar-height[data-bar="0"] {
+          height: 6px;
+        }
+        .bar-height[data-bar="1"] {
+          height: 10px;
+        }
+        .bar-height[data-bar="2"] {
+          height: 8px;
+        }
+        .bar-height[data-bar="3"] {
+          height: 12px;
+        }
+        .bar-height[data-bar="4"] {
+          height: 7px;
+        }
+        .bar-height[data-bar="5"] {
+          height: 11px;
+        }
+        .bar-height[data-bar="6"] {
+          height: 9px;
+        }
+        .bar-height[data-bar="7"] {
+          height: 5px;
+        }
+
+        /* Pulse animation with delays */
+        .pulse-delay-0 {
+          animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+
+        .pulse-delay-1 {
+          animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+          animation-delay: 0.2s;
+        }
+
+        .pulse-delay-2 {
+          animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+          animation-delay: 0.4s;
+        }
+
         @keyframes fadeIn {
           from {
             opacity: 0;
@@ -287,6 +330,15 @@ export default function HeroAscii() {
           to {
             transform: translateY(0);
             opacity: 1;
+          }
+        }
+
+        @keyframes pulse {
+          0%, 100% {
+            opacity: 1;
+          }
+          50% {
+            opacity: 0.5;
           }
         }
       `}</style>
