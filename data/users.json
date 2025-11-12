@@ -1,0 +1,46 @@
+[
+  {
+    "id": "4b5f98be-e97a-45c1-8618-4c427fa73946",
+    "username": "ishara",
+    "email": "isharamadunika9@gmail.com",
+    "passwordHash": "8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92",
+    "phone": "0770264992",
+    "university": "NSBM",
+    "createdAt": "2025-11-12T05:31:40.508Z",
+    "updatedAt": "2025-11-12T05:31:40.508Z",
+    "profileComplete": true
+  },
+  {
+    "id": "29b01e02-8f0d-4069-a534-95deeba417c4",
+    "username": "isharam",
+    "email": "isaramadunika4@gmail.com",
+    "passwordHash": "ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f",
+    "phone": "0770264992",
+    "university": "NSBM",
+    "createdAt": "2025-11-12T05:42:18.822Z",
+    "updatedAt": "2025-11-12T05:42:18.822Z",
+    "profileComplete": true
+  },
+  {
+    "id": "9ce6b97c-8402-4211-9ea7-08f99825c687",
+    "username": "shan",
+    "email": "imswimalasiri@students.nsbm.ac.lk",
+    "passwordHash": "8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92",
+    "phone": "0770264992",
+    "university": "NIMB",
+    "createdAt": "2025-11-12T05:47:45.060Z",
+    "updatedAt": "2025-11-12T05:47:45.060Z",
+    "profileComplete": true
+  },
+  {
+    "id": "fddb4937-74a8-40fd-9e71-4e1a4960da0b",
+    "username": "shan",
+    "email": "isharamadunika7@gmail.com",
+    "passwordHash": "8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92",
+    "phone": "0770264992",
+    "university": "NIMB",
+    "createdAt": "2025-11-12T05:49:07.596Z",
+    "updatedAt": "2025-11-12T05:49:07.596Z",
+    "profileComplete": true
+  }
+]

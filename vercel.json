@@ -1,0 +1,15 @@
+{
+  "buildCommand": "next build",
+  "devCommand": "next dev",
+  "installCommand": "npm install",
+  "framework": "nextjs",
+  "env": {
+    "NEXT_PUBLIC_GEMINI_API_KEY": "@NEXT_PUBLIC_GEMINI_API_KEY"
+  },
+  "regions": ["auto"],
+  "functions": {
+    "app/api/**": {
+      "maxDuration": 60
+    }
+  }
+}

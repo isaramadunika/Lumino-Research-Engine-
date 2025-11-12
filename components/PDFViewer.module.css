@@ -1,0 +1,11 @@
+.pdfScaleContainer {
+  transform-origin: top center;
+  transition: transform 0.2s ease-out;
+}
+
+.pdfIframe {
+  width: 800px;
+  height: 1000px;
+  min-width: 800px;
+  border: none;
+}
